@@ -9,11 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: whoami
-        run: |
-          echo "actor=${{ github.actor }} owner=${{ github.repository_owner }}"
-          echo "tokenlen=${{ secrets.GITEA_TOKEN }}"
+        run: echo "actor=${{ github.actor }}"
       - name: login
-        run: echo "${{ secrets.GITEA_TOKEN }}" | docker login repos.futureinfra.app -u "${{ github.actor }}" --password-stdin
+        run: echo "${{ github.token }}" | docker login repos.futureinfra.app -u "${{ github.actor }}" --password-stdin
       - name: build
         run: docker build -t repos.futureinfra.app/futureinfra/o56ff3cbd-sns-order-service:latest .
       - name: push

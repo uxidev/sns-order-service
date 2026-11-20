@@ -1,0 +1,10 @@
+{
+  "name": "sns-order-service",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "SNS order / status tracking / drop watch / refill - standalone, FutureInfra deployable",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=22" }
+}

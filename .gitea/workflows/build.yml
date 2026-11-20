@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: login
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login repos.futureinfra.app -u "${{ github.repository_owner }}" --password-stdin
+        run: echo "${{ secrets.FI_REG_TOKEN }}" | docker login repos.futureinfra.app -u "fi-o56ff3cbd" --password-stdin
       - name: build
         run: docker build -t repos.futureinfra.app/futureinfra/o56ff3cbd-sns-order-service:latest .
       - name: push

@@ -3,6 +3,9 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
+permissions:
+  contents: read
+  packages: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,6 +14,6 @@ jobs:
       - name: login fi registry
         run: echo "${{ github.token }}" | docker login repos.futureinfra.app -u "${{ github.actor }}" --password-stdin
       - name: build
-        run: docker build -t repos.futureinfra.app/futureinfra/sns-order-service:latest .
+        run: docker build -t repos.futureinfra.app/futureinfra/o56ff3cbd-sns-order-service:latest .
       - name: push
-        run: docker push repos.futureinfra.app/futureinfra/sns-order-service:latest
+        run: docker push repos.futureinfra.app/futureinfra/o56ff3cbd-sns-order-service:latest

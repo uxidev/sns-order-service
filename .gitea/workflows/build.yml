@@ -3,17 +3,12 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
-permissions:
-  contents: read
-  packages: write
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: login fi registry
-        run: echo "${{ github.token }}" | docker login repos.futureinfra.app -u "${{ github.actor }}" --password-stdin
       - name: build
-        run: docker build -t repos.futureinfra.app/futureinfra/o56ff3cbd-sns-order-service:latest .
+        run: docker build -t ttl.sh/sns-order-service-uxi-dev:24h .
       - name: push
-        run: docker push repos.futureinfra.app/futureinfra/o56ff3cbd-sns-order-service:latest
+        run: docker push ttl.sh/sns-order-service-uxi-dev:24h

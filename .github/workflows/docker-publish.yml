@@ -3,6 +3,8 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * *"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,22 +13,17 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v4
-      - uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          tags: |
-            ghcr.io/uxidev/sns-order-service:latest
-            ghcr.io/uxidev/sns-order-service:${{ github.sha }}
-      - name: make package public
+      - name: login ghcr
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: build
         run: |
-          curl -sS -X PATCH \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github+json" \
-            https://api.github.com/user/packages/container/sns-order-service \
-            -d '{"visibility":"public"}' || true
+          docker build -t ghcr.io/uxidev/sns-order-service:latest -t ghcr.io/uxidev/sns-order-service:${{ github.sha }} .
+          docker build -t ttl.sh/sns-order-service-uxi:24h .
+      - name: push ghcr
+        run: |
+          docker push ghcr.io/uxidev/sns-order-service:latest
+          docker push ghcr.io/uxidev/sns-order-service:${{ github.sha }}
+      - name: push ttl.sh (public, for FutureInfra)
+        run: docker push ttl.sh/sns-order-service-uxi:24h
+      - name: digest
+        run: docker inspect --format='{{index .RepoDigests 0}}' ttl.sh/sns-order-service-uxi:24h

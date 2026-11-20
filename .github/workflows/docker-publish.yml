@@ -23,3 +23,10 @@ jobs:
           tags: |
             ghcr.io/uxidev/sns-order-service:latest
             ghcr.io/uxidev/sns-order-service:${{ github.sha }}
+      - name: make package public
+        run: |
+          curl -sS -X PATCH \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/user/packages/container/sns-order-service \
+            -d '{"visibility":"public"}' || true

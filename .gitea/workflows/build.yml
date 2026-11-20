@@ -1,0 +1,16 @@
+﻿name: build-and-push
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: login
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login repos.futureinfra.app -u "${{ github.repository_owner }}" --password-stdin
+      - name: build
+        run: docker build -t repos.futureinfra.app/futureinfra/o56ff3cbd-sns-order-service:latest .
+      - name: push
+        run: docker push repos.futureinfra.app/futureinfra/o56ff3cbd-sns-order-service:latest

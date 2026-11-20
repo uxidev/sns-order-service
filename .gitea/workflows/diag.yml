@@ -1,0 +1,17 @@
+﻿name: diag
+on:
+  workflow_dispatch:
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: tools
+        run: |
+          echo "== tools =="
+          for t in docker podman buildah kaniko nerdctl skopeo crane; do printf "%s: " "$t"; command -v $t || echo none; done
+          echo "== sock =="
+          ls -l /var/run/docker.sock || echo no-sock
+          echo "== env =="
+          env | grep -i -E "gitea|token|registry" | sed "s/=.*/=<set>/" || true
+          echo "== os =="
+          uname -a; cat /etc/os-release | head -2

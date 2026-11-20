@@ -3,24 +3,14 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
-permissions:
-  contents: read
-  packages: write
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: login ghcr
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+      - name: login fi registry
+        run: echo "${{ github.token }}" | docker login repos.futureinfra.app -u "${{ github.actor }}" --password-stdin
       - name: build
-        run: docker build -t ghcr.io/uxidev/sns-order-service:latest .
+        run: docker build -t repos.futureinfra.app/futureinfra/sns-order-service:latest .
       - name: push
-        run: docker push ghcr.io/uxidev/sns-order-service:latest
-      - name: make package public
-        run: |
-          curl -s -o /dev/null -w "%{http_code}\n" -X PATCH \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github+json" \
-            https://api.github.com/user/packages/container/sns-order-service \
-            -d '{"visibility":"public"}'
+        run: docker push repos.futureinfra.app/futureinfra/sns-order-service:latest

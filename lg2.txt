@@ -1,0 +1,126 @@
+2026-11-20T12:29:40.1318802Z fi-actions-fi-actions-2-1(version:v5.4.1)
+2026-11-20T12:29:40.1319728Z ::group::Runner Information
+2026-11-20T12:29:40.1319936Z Runner labels: ubuntu-latest, ubuntu-24.04, ubuntu-22.04
+2026-11-20T12:29:40.1319973Z Task: 1386
+2026-11-20T12:29:40.1319995Z Job: build
+2026-11-20T12:29:40.1320016Z Repository: futureinfra/o56ff3cbd-sns-order-service
+2026-11-20T12:29:40.1320045Z Triggered by event: push
+2026-11-20T12:29:40.1320069Z ::endgroup::
+2026-11-20T12:29:40.1320111Z ::group::Operating System
+2026-11-20T12:29:40.1320168Z Debian GNU/Linux 13 (trixie)
+2026-11-20T12:29:40.1320192Z linux/amd64
+2026-11-20T12:29:40.1320212Z ::endgroup::
+2026-11-20T12:29:40.1335174Z workflow prepared
+2026-11-20T12:29:40.1577056Z ::group::Starting job container
+2026-11-20T12:29:40.1577262Z image: gitea/runner-images:ubuntu-24.04-v26.11.03@sha256:b96ba465021b1a4c6a1c9e79220c2b9bfad0f29b09dbb528bbfb35411443a3a4
+2026-11-20T12:29:40.1577313Z name: GITEA-ACTIONS-TASK-1386-WORKFLOW-build-and-push-JOB-build-build-4bd2b39c3d96bad431382225f84b8d8154e87c68028a375d63cee5ab6f10e68d
+2026-11-20T12:29:40.1577361Z network: GITEA-ACTIONS-TASK-1386-WORKFLOW-build-and-push-JOB-build-build-4bd2b39c3d96bad431382225f84b8d8154e87c68028a375d63cee5ab6f10e68d-build-network
+2026-11-20T12:29:40.1609982Z Cleaning up network for job build, and network name is: GITEA-ACTIONS-TASK-1386-WORKFLOW-build-and-push-JOB-build-build-4bd2b39c3d96bad431382225f84b8d8154e87c68028a375d63cee5ab6f10e68d-build-network
+2026-11-20T12:29:40.1641540Z docker pull image=gitea/runner-images:ubuntu-24.04-v26.11.03@sha256:b96ba465021b1a4c6a1c9e79220c2b9bfad0f29b09dbb528bbfb35411443a3a4 platform= username= forcePull=false
+2026-11-20T12:29:40.2761651Z docker create image=gitea/runner-images:ubuntu-24.04-v26.11.03@sha256:b96ba465021b1a4c6a1c9e79220c2b9bfad0f29b09dbb528bbfb35411443a3a4 platform= entrypoint=["sleep" "3600"] cmd=[] network="GITEA-ACTIONS-TASK-1386-WORKFLOW-build-and-push-JOB-build-build-4bd2b39c3d96bad431382225f84b8d8154e87c68028a375d63cee5ab6f10e68d-build-network"
+2026-11-20T12:29:40.4674130Z docker run image=gitea/runner-images:ubuntu-24.04-v26.11.03@sha256:b96ba465021b1a4c6a1c9e79220c2b9bfad0f29b09dbb528bbfb35411443a3a4 platform= entrypoint=["sleep" "3600"] cmd=[] network="GITEA-ACTIONS-TASK-1386-WORKFLOW-build-and-push-JOB-build-build-4bd2b39c3d96bad431382225f84b8d8154e87c68028a375d63cee5ab6f10e68d-build-network"
+2026-11-20T12:29:40.8463955Z ::endgroup::
+2026-11-20T12:29:40.8464930Z Prepare all required actions
+2026-11-20T12:29:41.1461042Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-20T12:29:41.1461560Z Complete job name: build
+2026-11-20T12:29:41.1536052Z ::group::Run actions/checkout@v4
+2026-11-20T12:29:41.1536306Z with:
+2026-11-20T12:29:41.1536407Z   allow-unsafe-pr-checkout: false
+2026-11-20T12:29:41.1536438Z   clean: true
+2026-11-20T12:29:41.1536461Z   fetch-depth: 1
+2026-11-20T12:29:41.1536485Z   fetch-tags: false
+2026-11-20T12:29:41.1536509Z   lfs: false
+2026-11-20T12:29:41.1536528Z   persist-credentials: true
+2026-11-20T12:29:41.1536556Z   repository: futureinfra/o56ff3cbd-sns-order-service
+2026-11-20T12:29:41.1536578Z   set-safe-directory: true
+2026-11-20T12:29:41.1536620Z   show-progress: true
+2026-11-20T12:29:41.1536646Z   sparse-checkout-cone-mode: true
+2026-11-20T12:29:41.1536671Z   ssh-strict: true
+2026-11-20T12:29:41.1536695Z   ssh-user: git
+2026-11-20T12:29:41.1536716Z   submodules: false
+2026-11-20T12:29:41.1536747Z   token: ***
+2026-11-20T12:29:41.1536785Z ::endgroup::
+2026-11-20T12:29:41.4776478Z Syncing repository: futureinfra/o56ff3cbd-sns-order-service
+2026-11-20T12:29:41.4788312Z ::group::Getting Git version info
+2026-11-20T12:29:41.4789580Z Working directory is '/workspace/futureinfra/o56ff3cbd-sns-order-service'
+2026-11-20T12:29:41.4894516Z [command]/usr/bin/git version
+2026-11-20T12:29:41.5204463Z git version 2.56.0
+2026-11-20T12:29:41.5258990Z ::endgroup::
+2026-11-20T12:29:41.5294743Z Temporarily overriding HOME='/tmp/ddf8c4d6-4dea-45c5-b07c-42932dc95df5' before making global git config changes
+2026-11-20T12:29:41.5298935Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-20T12:29:41.5309348Z [command]/usr/bin/git config --global --add safe.directory /workspace/futureinfra/o56ff3cbd-sns-order-service
+2026-11-20T12:29:41.5512401Z Deleting the contents of '/workspace/futureinfra/o56ff3cbd-sns-order-service'
+2026-11-20T12:29:41.5533110Z ::group::Initializing the repository
+2026-11-20T12:29:41.5559055Z [command]/usr/bin/git init /workspace/futureinfra/o56ff3cbd-sns-order-service
+2026-11-20T12:29:41.5905864Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-20T12:29:41.5906492Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-20T12:29:41.5906545Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-20T12:29:41.5906585Z hint: call:
+2026-11-20T12:29:41.5906633Z hint:
+2026-11-20T12:29:41.5906664Z hint: 	git config --global init.defaultBranch <name>
+2026-11-20T12:29:41.5906696Z hint:
+2026-11-20T12:29:41.5906719Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-20T12:29:41.5906751Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-20T12:29:41.5906781Z hint:
+2026-11-20T12:29:41.5906809Z hint: 	git branch -m <name>
+2026-11-20T12:29:41.5909911Z hint:
+2026-11-20T12:29:41.5910161Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-20T12:29:41.5921995Z Initialized empty Git repository in /workspace/futureinfra/o56ff3cbd-sns-order-service/.git/
+2026-11-20T12:29:41.5946918Z [command]/usr/bin/git remote add origin https://repos.futureinfra.app/futureinfra/o56ff3cbd-sns-order-service
+2026-11-20T12:29:41.6187197Z ::endgroup::
+2026-11-20T12:29:41.6187383Z ::group::Disabling automatic garbage collection
+2026-11-20T12:29:41.6204553Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-20T12:29:41.6426618Z ::endgroup::
+2026-11-20T12:29:41.6426798Z ::group::Setting up auth
+2026-11-20T12:29:41.6440225Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-20T12:29:41.6623016Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-20T12:29:41.9439712Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/repos\.futureinfra\.app\/\.extraheader
+2026-11-20T12:29:41.9615819Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/repos\.futureinfra\.app\/\.extraheader' && git config --local --unset-all 'http.https://repos.futureinfra.app/.extraheader' || :"
+2026-11-20T12:29:42.2289896Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-20T12:29:42.2574256Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-20T12:29:42.5415869Z [command]/usr/bin/git config --local http.https://repos.futureinfra.app/.extraheader AUTHORIZATION: basic ***
+2026-11-20T12:29:42.5720050Z ::endgroup::
+2026-11-20T12:29:42.5720358Z ::group::Fetching the repository
+2026-11-20T12:29:42.5734873Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +445dbebb5fd4586e871f03f622000a45ecd55c18:refs/remotes/origin/main
+2026-11-20T12:29:42.9947549Z From https://repos.futureinfra.app/futureinfra/o56ff3cbd-sns-order-service
+2026-11-20T12:29:42.9948083Z  * [new ref]         445dbebb5fd4586e871f03f622000a45ecd55c18 -> origin/main
+2026-11-20T12:29:42.9969909Z ::endgroup::
+2026-11-20T12:29:42.9970119Z ::group::Determining the checkout info
+2026-11-20T12:29:42.9976006Z ::endgroup::
+2026-11-20T12:29:42.9993121Z [command]/usr/bin/git sparse-checkout disable
+2026-11-20T12:29:43.0294871Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-20T12:29:43.0478146Z ::group::Checking out the ref
+2026-11-20T12:29:43.0488455Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-11-20T12:29:43.0924615Z Switched to a new branch 'main'
+2026-11-20T12:29:43.0941744Z branch 'main' set up to track 'origin/main'.
+2026-11-20T12:29:43.0960757Z ::endgroup::
+2026-11-20T12:29:43.1232212Z [command]/usr/bin/git log -1 --format=%H
+2026-11-20T12:29:43.1419932Z 445dbebb5fd4586e871f03f622000a45ecd55c18
+2026-11-20T12:29:43.2157140Z ::group::Run echo "***" | docker login ghcr.io -u "fi-o56ff3cbd" --password-stdin
+2026-11-20T12:29:43.2157348Z echo "***" | docker login ghcr.io -u "fi-o56ff3cbd" --password-stdin
+2026-11-20T12:29:43.2157415Z shell: bash -e {0}
+2026-11-20T12:29:43.2157484Z ::endgroup::
+2026-11-20T12:29:43.8559702Z time="2026-11-20T12:29:43Z" level=info msg="Error logging in to endpoint, trying next endpoint" endpoint="{https://ghcr.io 0xa322f6b40}" error="Get \"https://ghcr.io/v2/\": denied: denied"
+2026-11-20T12:29:43.8571476Z Get "https://ghcr.io/v2/": denied: denied
+2026-11-20T12:29:43.8853163Z ##[error]Process completed with exit code 1.
+2026-11-20T12:29:43.8855764Z Run Post actions/checkout@v4
+2026-11-20T12:29:43.8885327Z Post job cleanup.
+2026-11-20T12:29:43.8885486Z docker exec cmd=[node --preserve-symlinks-main /var/run/act/actions/0171910b83740495f3b9f6112ecd5f7772540e77732909d2c22c31fac9fc0569/dist/index.js] user= workdir=
+2026-11-20T12:29:44.1408582Z [command]/usr/bin/git version
+2026-11-20T12:29:44.1659052Z git version 2.56.0
+2026-11-20T12:29:44.1725978Z Temporarily overriding HOME='/tmp/bd74e01d-79d5-4bc0-b4ae-fa739c3bd145' before making global git config changes
+2026-11-20T12:29:44.1726680Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-20T12:29:44.1735803Z [command]/usr/bin/git config --global --add safe.directory /workspace/futureinfra/o56ff3cbd-sns-order-service
+2026-11-20T12:29:44.1902113Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-20T12:29:44.2053417Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-20T12:29:44.4557426Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/repos\.futureinfra\.app\/\.extraheader
+2026-11-20T12:29:44.4766393Z http.https://repos.futureinfra.app/.extraheader
+2026-11-20T12:29:44.4792835Z [command]/usr/bin/git config --local --unset-all http.https://repos.futureinfra.app/.extraheader
+2026-11-20T12:29:44.4992512Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/repos\.futureinfra\.app\/\.extraheader' && git config --local --unset-all 'http.https://repos.futureinfra.app/.extraheader' || :"
+2026-11-20T12:29:44.7790735Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-20T12:29:44.8002689Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-20T12:29:45.1120906Z Success - Post actions/checkout@v4
+2026-11-20T12:29:45.1264140Z Cleaning up container for job build
+2026-11-20T12:29:45.5463987Z Cleaning up network for job build, and network name is: GITEA-ACTIONS-TASK-1386-WORKFLOW-build-and-push-JOB-build-build-4bd2b39c3d96bad431382225f84b8d8154e87c68028a375d63cee5ab6f10e68d-build-network
+2026-11-20T12:29:45.7658942Z Job failed
+2026-11-20T12:29:45.7660034Z job 'build' failed

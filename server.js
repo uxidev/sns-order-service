@@ -297,3 +297,61 @@ async function readBody(req) {
   if (!chunks.length) return {};
   return JSON.parse(Buffer.concat(chunks).toString('utf8'));
 }
+const server = http.createServer(async (req, res) => {
+  const url = new URL(req.url, 'http://x');
+  const p = url.pathname;
+  try {
+    if (p === '/health') return json(res, 200, { ok: true, at: now() });
+    if (!auth(req)) return json(res, 401, { error: 'unauthorized' });
+    if (p === '/services' && req.method === 'GET') {
+      if (!db.services.length) await refreshServices();
+      return json(res, 200, { at: db.servicesAt, count: db.services.length, services: db.services });
+    }
+    if (p === '/services/sync' && req.method === 'POST') {
+      const list = await refreshServices();
+      return json(res, 200, { count: list.length, at: db.servicesAt });
+    }
+    if (p === '/orders' && req.method === 'GET') {
+      const st = url.searchParams.get('status');
+      const rows = st ? db.orders.filter((o) => o.status === st) : db.orders;
+      return json(res, 200, { count: rows.length, orders: rows.slice(-200) });
+    }
+    if (p === '/orders' && req.method === 'POST') {
+      const body = await readBody(req);
+      const order = await placeOrder(body);
+      return json(res, order.status === 'failed' ? 502 : 200, order);
+    }
+    if (p.startsWith('/orders/') && p.endsWith('/sync') && req.method === 'POST') {
+      const id = p.split('/')[2];
+      const o = db.orders.find((x) => x.id === id);
+      if (!o) return json(res, 404, { error: 'not found' });
+      await syncOrder(o); await saveDb();
+      return json(res, 200, o);
+    }
+    if (p.startsWith('/orders/') && p.endsWith('/refill') && req.method === 'POST') {
+      const id = p.split('/')[2];
+      const o = db.orders.find((x) => x.id === id);
+      if (!o) return json(res, 404, { error: 'not found' });
+      const r = await refill(o, { force: url.searchParams.get('force') === '1' });
+      return json(res, 200, r);
+    }
+    if (p.startsWith('/orders/') && req.method === 'GET') {
+      const id = p.split('/')[2];
+      const o = db.orders.find((x) => x.id === id || x.providerOrderId === id);
+      if (!o) return json(res, 404, { error: 'not found' });
+      return json(res, 200, { order: o, drop: dropRate(o) });
+    }
+    if (p === '/tick' && req.method === 'POST') { await tick(); return json(res, 200, { ok: true }); }
+    if (p === '/events' && req.method === 'GET') {
+      return json(res, 200, { count: db.events.length, events: db.events.slice(-200) });
+    }
+    return json(res, 404, { error: 'not found' });
+  } catch (e) {
+    return json(res, 400, { error: e.message });
+  }
+});
+
+await loadDb();
+server.listen(CFG.port, () => log('start', { port: CFG.port, autoRefill: CFG.autoRefill }));
+setInterval(() => { tick().catch((e) => log('tick_failed', { error: e.message })); }, CFG.pollMin * 60000);
+setTimeout(() => { tick().catch(() => {}); }, 5000);

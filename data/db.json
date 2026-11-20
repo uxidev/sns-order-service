@@ -1,0 +1,13 @@
+{
+  "orders": [],
+  "services": [],
+  "servicesAt": null,
+  "events": [
+    {
+      "at": "2026-11-20T12:14:19.937Z",
+      "event": "start",
+      "port": 18090,
+      "autoRefill": false
+    }
+  ]
+}
